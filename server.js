@@ -12,4 +12,4 @@ app.use('/graphql', graphqlHTTP({
 }))
 
 app.listen(port);
-console.log("Listening...");
+console.log("PetfinderQL running ");
