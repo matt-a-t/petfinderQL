@@ -4,7 +4,7 @@ const graphqlHTTP = require('express-graphql');
 const schema = require('./data/schema');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use('/graphql', graphqlHTTP({
   schema,
