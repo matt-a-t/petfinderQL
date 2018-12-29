@@ -1,4 +1,9 @@
-const { GraphQLObjectType, GraphQLInt, GraphQLList, GraphQLString} = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLString
+} = require('graphql');
 
 const ContactType = require('./contact_type');
 const MediaType = require('./media_type');
@@ -10,70 +15,70 @@ module.exports = new GraphQLObjectType({
   description: 'The Pet object',
 
   fields: () => ({
-    name: { 
+    name: {
       type: GraphQLString,
-      resolve: json => { return json.name.$t; }
+      resolve: json => json.name.$t
     },
-    options: { 
+    options: {
       type: new GraphQLList(OptionType),
-      resolve: json => { return json.options.option; }
+      resolve: json => json.options.option
     },
-    status: { 
+    status: {
       type: GraphQLString,
-      resolve: json => { return json.status.$t; }
+      resolve: json => json.status.$t
     },
-    contact: { 
+    contact: {
       type: ContactType,
-      resolve: json => { return json.contact; }
+      resolve: json => json.contact
     },
     age: {
       type: GraphQLString,
-      resolve: json => { return json.age.$t }
+      resolve: json => json.age.$t
     },
     size: {
       type: GraphQLString,
-      resolve: json => { return json.size.$t }
+      resolve: json => json.size.$t
     },
-    media: { 
+    media: {
       type: MediaType,
-      resolve: json => { return json.media }
+      resolve: json => json.media
     },
     id: {
       type: GraphQLInt,
-      resolve: json => { return json.id.$t }
+      resolve: json => json.id.$t
     },
     shelterPetId: {
       type: GraphQLString,
-      resolve: json => { return json.shelterPetId.$t }
+      resolve: json => json.shelterPetId.$t
     },
     //TODO: breeds has problem if there are not multiple
-    breeds: { 
+    breeds: {
       type: new GraphQLList(BreedType),
-      resolve: json => { return json.breeds.breed }
+      resolve: json => json.breeds.breed
     },
     sex: {
       type: GraphQLString,
-      resolve: json => { return json.sex.$t }
+      resolve: json => json.sex.$t
     },
     description: {
       type: GraphQLString,
-      resolve: json => { return json.description.$t }
+      resolve: json => json.description.$t
     },
     mix: {
       type: GraphQLString,
-      resolve: json => { return json.mix.$t }
+      resolve: json => json.mix.$t
     },
     shelterId: {
       type: GraphQLString,
-      resolve: json => { return json.shelterId.$t }
+      resolve: json => json.shelterId.$t
     },
     lastUpdate: {
       type: GraphQLString,
-      resolve: json => { return json.lastUpdate.$t }
+      resolve: json => json.lastUpdate.$t
     },
     animal: {
       type: GraphQLString,
-      resolve: json => { return json.animal.$t }
+      resolve: json => json.animal.$t
     }
   })
-})
+});
