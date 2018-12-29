@@ -4,6 +4,7 @@ const {
   GraphQLList,
   GraphQLString
 } = require('graphql');
+const { makeIterable } = require('../helpers');
 
 const ContactType = require('./contact_type');
 const MediaType = require('./media_type');
@@ -51,10 +52,9 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString,
       resolve: json => json.shelterPetId.$t
     },
-    //TODO: breeds has problem if there are not multiple
     breeds: {
       type: new GraphQLList(BreedType),
-      resolve: json => json.breeds.breed
+      resolve: json => makeIterable(json.breeds.breed)
     },
     sex: {
       type: GraphQLString,

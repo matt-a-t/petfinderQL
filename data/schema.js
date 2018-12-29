@@ -1,4 +1,3 @@
-const axios = require('axios');
 const {
   GraphQLObjectType,
   GraphQLSchema,
@@ -7,6 +6,8 @@ const {
   GraphQLInt,
   GraphQLList
 } = require('graphql');
+
+const { doRequest } = require('./helpers');
 
 // This calls for an environment variable that contains your Petfinder key. You can either replace this with a string
 // that contains your petfinder key or set it as an environment variable on the machine you are running the server on.
@@ -27,13 +28,6 @@ const PetType = require('./types/pet_type');
 const BreedType = require('./types/breed_type');
 const SheltersType = require('./types/shelters_type');
 const ShelterType = require('./types/shelter_type');
-
-const doRequest = (endpoint, params) => {
-  console.log(endpoint, JSON.stringify(params));
-  return axios.get(endpoint, {
-    params
-  });
-};
 
 module.exports = new GraphQLSchema({
   query: new GraphQLObjectType({
