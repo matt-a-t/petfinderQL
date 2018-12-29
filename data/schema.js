@@ -255,7 +255,10 @@ module.exports = new GraphQLSchema({
             description:
               'The ID of the shelter. Can be found by running shelterFind.'
           },
-          //TODO: status
+          status: {
+            type: GraphQLString,
+            description: 'The status of the pets that you have looking for '
+          },
           offset: {
             type: GraphQLInt,
             description:
@@ -273,6 +276,7 @@ module.exports = new GraphQLSchema({
             id: args.shelterId,
             count: args.count,
             offset: args.offset,
+            status: args.status,
             format: 'json'
           }).then(response => ({
             lastOffset: response.data.petfinder.lastOffset.$t,
@@ -281,7 +285,7 @@ module.exports = new GraphQLSchema({
       },
 
       shelterListByBreed: {
-        type: new GraphQLList(ShelterType),
+        type: SheltersType,
         description:
           'Returns a list of shelter IDs listing animals of a particular breed.\r\rRequired arguments: [animal, breed]',
         args: {
@@ -295,7 +299,11 @@ module.exports = new GraphQLSchema({
             description:
               'The breed of animal. Use breedList for a list of possible values.'
           },
-          //TODO: offset
+          offset: {
+            type: GraphQLInt,
+            description:
+              'set this to the value of lastOffset returned by a previous call to shelterFind, and it will retrieve the next result set'
+          },
           count: {
             type: GraphQLInt,
             description:
@@ -308,11 +316,12 @@ module.exports = new GraphQLSchema({
             animal: args.animal,
             breed: args.breed,
             count: args.count,
+            offset: args.offset,
             format: 'json'
-          }).then(response => {
-            const shelters = response.data.petfinder.shelters;
-            return shelters.length > 0 ? shelters : {};
-          })
+          }).then(response => ({
+            lastOffset: response.data.petfinder.lastOffset.$t,
+            shelters: response.data.petfinder.shelters.shelter
+          }))
       }
     })
   })
