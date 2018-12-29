@@ -25,6 +25,7 @@ const shelterListByBreedUrl = `${baseUrl}/shelter.listByBreed`;
 const PetsType = require('./types/pets_type');
 const PetType = require('./types/pet_type');
 const BreedType = require('./types/breed_type');
+const SheltersType = require('./types/shelters_type');
 const ShelterType = require('./types/shelter_type');
 
 const doRequest = (endpoint, params) => {
@@ -156,7 +157,6 @@ module.exports = new GraphQLSchema({
             description:
               'Age of animal. Possible values: [Baby, Young, Adult, Senior]'
           },
-          // TODO: Add offset functionality
           offset: {
             type: GraphQLInt,
             description:
@@ -187,7 +187,8 @@ module.exports = new GraphQLSchema({
       },
 
       shelterFind: {
-        type: new GraphQLList(ShelterType),
+        // type: new GraphQLList(ShelterType),
+        type: SheltersType,
         description:
           'Finds shelter records that match the arguments used.\r\rRequired arguments: location',
         args: {
@@ -200,7 +201,11 @@ module.exports = new GraphQLSchema({
             type: GraphQLString,
             description: 'Full or partial shelter name.'
           },
-          // TODO: offset
+          offset: {
+            type: GraphQLInt,
+            description:
+              'set this to the value of lastOffset returned by a previous call to shelterFind, and it will retrieve the next result set'
+          },
           count: {
             type: GraphQLInt,
             description:
@@ -213,8 +218,12 @@ module.exports = new GraphQLSchema({
             location: args.location,
             name: args.name,
             count: args.count,
+            offset: args.offset,
             format: 'json'
-          }).then(response => response.data.petfinder.shelters.shelter)
+          }).then(response => ({
+            lastOffset: response.data.petfinder.lastOffset.$t,
+            shelters: response.data.petfinder.shelters.shelter
+          }))
       },
 
       shelter: {
@@ -237,7 +246,7 @@ module.exports = new GraphQLSchema({
       },
 
       shelterGetPets: {
-        type: new GraphQLList(PetType),
+        type: PetsType,
         description:
           'Returns a list of pet records for a shelter.\r\rRequired argument: shelterId',
         args: {
@@ -247,7 +256,11 @@ module.exports = new GraphQLSchema({
               'The ID of the shelter. Can be found by running shelterFind.'
           },
           //TODO: status
-          //TODO: offset
+          offset: {
+            type: GraphQLInt,
+            description:
+              'set this to the value of lastOffset returned by a previous call to shelterFind, and it will retrieve the next result set'
+          },
           count: {
             type: GraphQLInt,
             description:
@@ -259,8 +272,12 @@ module.exports = new GraphQLSchema({
             key: petfinderKey,
             id: args.shelterId,
             count: args.count,
+            offset: args.offset,
             format: 'json'
-          }).then(response => response.data.petfinder.pets.pet)
+          }).then(response => ({
+            lastOffset: response.data.petfinder.lastOffset.$t,
+            pets: response.data.petfinder.pets.pet
+          }))
       },
 
       shelterListByBreed: {

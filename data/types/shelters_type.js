@@ -1,21 +1,21 @@
 const { GraphQLObjectType, GraphQLInt, GraphQLList } = require('graphql');
 
-const SinglePetType = require('./pet_type');
+const SingleShelterType = require('./shelter_type');
 
 module.exports = new GraphQLObjectType({
-  name: 'Pets',
-  description: 'The pet list and the offset',
+  name: 'Shelters',
+  description: 'The shelter list and the offset',
 
   fields: () => ({
     lastOffset: {
       type: GraphQLInt,
       resolve: json => json.lastOffset
     },
-    pets: {
-      type: new GraphQLList(SinglePetType),
+    shelters: {
+      type: new GraphQLList(SingleShelterType),
       resolve: json => {
         // console.log('json', json);
-        return json.pets;
+        return json.shelters;
       }
     }
   })
