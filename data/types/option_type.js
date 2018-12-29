@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString } = require('graphql')
+const { GraphQLObjectType, GraphQLString } = require('graphql');
 
 const OptionType = new GraphQLObjectType({
   name: 'Option',
@@ -7,9 +7,9 @@ const OptionType = new GraphQLObjectType({
   fields: () => ({
     option: {
       type: GraphQLString,
-      resolve: json => { return json.$t; }
+      resolve: json => json.$t
     }
   })
-})
+});
 
 module.exports = OptionType;

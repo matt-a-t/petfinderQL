@@ -7,9 +7,9 @@ const BreedType = new GraphQLObjectType({
   fields: () => ({
     breed: {
       type: GraphQLString,
-      resolve: json => { return json.$t }
+      resolve: json => json.$t
     }
   })
-})
+});
 
 module.exports = BreedType;

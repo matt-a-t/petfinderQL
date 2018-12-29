@@ -35,8 +35,6 @@ const doRequest = (endpoint, params) => {
   });
 };
 
-const makeIterable = data => (data.length > 0 ? data : []);
-
 module.exports = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
@@ -124,7 +122,6 @@ module.exports = new GraphQLSchema({
       },
 
       petFind: {
-        // type: new GraphQLList(PetType),
         type: PetsType,
         description:
           'Searches for pet according to arguments. Returns a list of records.\r\rRequied arguments - Location',
@@ -187,7 +184,6 @@ module.exports = new GraphQLSchema({
       },
 
       shelterFind: {
-        // type: new GraphQLList(ShelterType),
         type: SheltersType,
         description:
           'Finds shelter records that match the arguments used.\r\rRequired arguments: location',

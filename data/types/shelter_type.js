@@ -1,73 +1,78 @@
-const { GraphQLObjectType, GraphQLInt, GraphQLList, GraphQLString} = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLString
+} = require('graphql');
 
-module.exports =  new GraphQLObjectType({
+module.exports = new GraphQLObjectType({
   name: 'Shelter',
   description: 'The shelter object',
 
   fields: () => ({
     id: {
       type: GraphQLString,
-      resolve: json => { return json.id.$t }
+      resolve: json => json.id.$t
     },
 
     name: {
       type: GraphQLString,
-      resolve: json => { return json.name.$t }
-     },
+      resolve: json => json.name.$t
+    },
 
     phone: {
-     type: GraphQLString,
-     resolve: json => { return json.phone.$t }
+      type: GraphQLString,
+      resolve: json => json.phone.$t
     },
 
     email: {
       type: GraphQLString,
-      resolve: json => { return json.email.$t }
+      resolve: json => json.email.$t
     },
-    
+
     address1: {
       type: GraphQLString,
-      resolve: json => { return json.address1.$t }
+      resolve: json => json.address1.$t
     },
 
     address2: {
-     type: GraphQLString,
-     resolve: json => { return json.state.$t }
+      type: GraphQLString,
+      resolve: json => json.state.$t
     },
 
     city: {
-     type: GraphQLString,
-     resolve: json => { return json.city.$t }
+      type: GraphQLString,
+      resolve: json => json.city.$t
     },
 
     state: {
       type: GraphQLString,
-      resolve: json => { return json.state.$t }
+      resolve: json => json.state.$t
     },
 
     zip: {
-     type: GraphQLString,
-     resolve: json => { return json.zip.$t }
+      type: GraphQLString,
+      resolve: json => json.zip.$t
     },
 
     country: {
       type: GraphQLString,
-      resolve: json => { return json.country.$t }
+      resolve: json => json.country.$t
     },
 
     fax: {
       type: GraphQLString,
-      resolve: json => { return json.fax.$t }
+      resolve: json => json.fax.$t
     },
 
     latitude: {
       type: GraphQLString,
-      resolve: json => { return json.latitude.$t }
-     },
+      resolve: json => json.latitude.$t
+    },
 
     longitude: {
       type: GraphQLString,
-      resolve: json => { return json.longitude.$t }
-     },
+      resolve: json => json.longitude.$t
+    }
   })
-})
+});

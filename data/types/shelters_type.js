@@ -13,10 +13,7 @@ module.exports = new GraphQLObjectType({
     },
     shelters: {
       type: new GraphQLList(SingleShelterType),
-      resolve: json => {
-        // console.log('json', json);
-        return json.shelters;
-      }
+      resolve: json => json.shelter
     }
   })
 });

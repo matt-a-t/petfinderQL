@@ -13,10 +13,7 @@ module.exports = new GraphQLObjectType({
     },
     pets: {
       type: new GraphQLList(SinglePetType),
-      resolve: json => {
-        // console.log('json', json);
-        return json.pets;
-      }
+      resolve: json => json.pets
     }
   })
 });

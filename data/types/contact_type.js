@@ -7,35 +7,35 @@ const ContactType = new GraphQLObjectType({
   fields: () => ({
     phone: {
       type: GraphQLString,
-      resolve: json => { return json.phone.$t }
+      resolve: json => json.phone.$t
     },
     email: {
       type: GraphQLString,
-      resolve: json => { return json.email.$t }
+      resolve: json => json.email.$t
     },
     city: {
       type: GraphQLString,
-      resolve: json => { return json.city.$t }
+      resolve: json => json.city.$t
     },
     state: {
       type: GraphQLString,
-      resolve: json => { return json.state.$t }
+      resolve: json => json.state.$t
     },
     zip: {
       type: GraphQLString,
-      resolve: json => { return json.zip.$t }
+      resolve: json => json.zip.$t
     },
     address1: {
       type: GraphQLString,
-      resolve: json => { return json.address1.$t }
+      resolve: json => json.address1.$t
     },
     address2: {
       type: GraphQLString,
-      resolve: json => { return json.address2.$t}
+      resolve: json => json.address2.$
     },
     fax: {
       type: GraphQLString,
-      resolve: json => { return json.fax.$t }
+      resolve: json => json.fax.$t
     }
   })
 });

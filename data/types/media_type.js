@@ -7,10 +7,10 @@ const MediaType = new GraphQLObjectType({
   fields: () => ({
     photos: {
       type: new GraphQLList(PhotoType),
-      resolve: json => { return json.photos.photo }
+      resolve: json => json.photos.photo
     }
   })
-})
+});
 
 const PhotoType = new GraphQLObjectType({
   name: 'Photo',
@@ -20,17 +20,17 @@ const PhotoType = new GraphQLObjectType({
     size: {
       type: GraphQLString,
       //dot notation does not allow the @ symbol
-      resolve: json => { return json['@size'] }
+      resolve: json => json['@size']
     },
     url: {
       type: GraphQLString,
-      resolve: json => { return json.$t }
+      resolve: json => json.$t
     },
     id: {
       type: GraphQLString,
-      resolve: json => { return json['@id'] }
+      resolve: json => json['@id']
     }
   })
-})
+});
 
 module.exports = MediaType;
