@@ -30,11 +30,18 @@ npm install
 cp .env.example .env
 # ... and populate .env with your API key
 
-# run
+# run dev mode
+npm run start:dev
+
+# run production mode
 npm run start
 ```
 
 Then visit [http://localhost:4000](http://localhost:4000) in your browser.
+
+## Healthcheck Endpoint
+
+Whether the server is up, you can monitor on http://localhost:4000/healthcheck 
 
 ## API Usage
 
@@ -267,6 +274,5 @@ Returns a list of shelter IDs listing animals of a particular breed.
 }
 ```
 
-## Petfinder API Docs
-
-https://www.petfinder.com/developers/api-docs
+## Test Url
+https://ac-petfinderql.herokuapp.com/
