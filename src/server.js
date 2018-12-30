@@ -8,8 +8,12 @@ const schema = require('./data/schema');
 const app = express();
 const port = process.env.PORT || 4000;
 
+app.get('/healthcheck', (req, res) => {
+  res.sendStatus(200);
+});
+
 app.use(
-  '/graphql',
+  '/',
   graphqlHTTP({
     schema,
     graphiql: true
